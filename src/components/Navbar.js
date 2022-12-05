@@ -1,12 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { productsInfo } from '../data/products-info'
 import tesla_logo from '../images/tesla-logo.svg'
 import { useGlobalContext } from '../globalContext'
+import { useLocation } from 'react-router-dom'
 const Navbar = () => {
-    const { isMenuOpen, openMenu } = useGlobalContext();
-    console.log(isMenuOpen);
+    const {isMenuOpen, openMenu} = useGlobalContext();
+    const [isNavbarBlur, setIsNavbarBlur] = useState(false);
+    const {pathname} = useLocation();
+    useEffect(()=>{
+        if(pathname!=='/'){
+            setIsNavbarBlur(false);
+        }
+        else{
+            setIsNavbarBlur(true);
+        }
+    });
+    // console.log(isMenuOpen);
     return (
-        <nav className='fixed top-0 left-0 w-full py-3 flex justify-between'>
+        <nav className={`fixed w-full py-3 flex justify-between ${(isNavbarBlur) ? ('') : ('bg-white/90 backdrop-blur-sm')}`}>
             <div className="logo">
                 <a href="/">
                     <img src={tesla_logo} alt="tesla_logo" className='pl-6 h-8 w-40' />
@@ -15,9 +26,9 @@ const Navbar = () => {
             <div className="nav-btns items-center hidden lg:flex">
                 {
                     productsInfo.map((product) => {
-                        const { id, title } = product;
+                        const { id, title, url } = product;
                         return (
-                            <a className='px-3 py-2 rounded-md mx-2 ' key={id} href={`#${title}`}>
+                            <a className='px-3 py-2 rounded-md mx-2 ' key={id} href={(isNavbarBlur) ? `#${url}` : `/product/${url}`}>
                                 {title}
                             </a>
                         )
