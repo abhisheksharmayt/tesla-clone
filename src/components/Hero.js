@@ -1,6 +1,6 @@
 import React from 'react'
 import { productsInfo } from '../data/products-info'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 const Hero = () => {
     return (
         <div className='bg-gray-100 h-screen w-screen overflow-scroll scroll-smooth snap-y snap-mandatory'>
@@ -15,8 +15,10 @@ const Hero = () => {
                                 <p className='text-sm'>{short_desc}</p>
                             </div>
                             <div className='mb-32 flex flex-col sm:flex-row'>
-                                <a className='py-3 px-16 mx-4 my-2 rounded-md bg-gray-800 text-sm text-white' href={`/product/${url}`}>Custom Order</a>
-                                <a className='py-3 px-14 mx-4 my-2 rounded-md bg-gray-200 text-sm' href={`/cart`}>Existing Inventory</a>
+                                <Link className='py-3 px-16 mx-4 my-2 rounded-md bg-gray-800 text-sm text-white' to={`/product/${url}`}>Custom Order</Link>
+                                <Link className='py-3 px-14 mx-4 my-2 rounded-md bg-gray-200 text-sm' to='/cart'>
+                                    Existing Inventory
+                                </Link>
                             </div>
                         </div>
                     )

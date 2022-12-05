@@ -2,10 +2,11 @@ import React, { useEffect, useState } from 'react'
 import { productsInfo } from '../data/products-info';
 import { AiOutlineInfoCircle } from 'react-icons/ai'
 import { useGlobalContext } from '../globalContext';
+import { Link } from 'react-router-dom';
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(null);
-  const {cart, empty} = useGlobalContext();
+  const { cart, empty } = useGlobalContext();
   console.log(empty, cart);
   useEffect(() => {
     let total = 0;
@@ -27,9 +28,9 @@ const Cart = () => {
         (empty) ? (
           <div className='flex flex-col justify-center items-center text-center my-5 h-36 w-full'>
             <h2 className='my-5 font-medium'>Your Cart is Empty</h2>
-            <a href="/" className='bg-blue-600 text-white font-medium py-3 max-w-md w-full rounded-lg'>
+            <Link to='/' className='bg-blue-600 text-white font-medium py-3 max-w-md w-full rounded-lg'>
               <button>Continue Shopping</button>
-            </a>
+            </Link>
           </div>
         ) : (
           <section className='flex flex-col lg:flex-row max-w-xl lg:max-w-full'>
@@ -69,9 +70,9 @@ const Cart = () => {
                 <p>Subtotal</p>
                 <p>${totalPrice}</p>
               </div>
-            <a href="#" className='bg-blue-600 text-white font-medium py-3 mt-10 max-w-md w-full rounded-lg'>
-              <button>Checkout</button>
-            </a>
+              <Link to='#' className='bg-blue-600 text-white font-medium py-3 mt-10 max-w-md w-full rounded-lg'>
+                <button>Checkout</button>
+              </Link>
             </div>
           </section>
         )

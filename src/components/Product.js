@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { useParams } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import { productsInfo } from '../data/products-info';
 import {BsFacebook, BsInstagram, BsTwitter} from 'react-icons/bs'
+import { useGlobalContext } from '../globalContext';
 const Product = () => {
   const { name } = useParams();
   const [product, setProduct] = useState({});
@@ -12,7 +13,7 @@ const Product = () => {
       setLoading(false);
       setProduct(data);
     }
-  }, [])
+  }, [name])
   if (loading) {
     return <div className='pt-10 text-center'>loading..</div>
   }
@@ -38,7 +39,7 @@ const Product = () => {
             <h4>{title}</h4>
             <p className=''>{price}</p>
           </div>
-          <StockInfo inStock={inStock}/>
+          <StockInfo inStock={inStock} url={url}/>
           <Highlights highlights={highlights}/>
           <div className='text-start mt-10'>
             <p className='font-medium'>Share</p>
@@ -58,10 +59,10 @@ const Feature = ({ feature }) => {
 
   return (
     <ul className="flex justify-around md:justify-evenly mt-5">
-      {feature.map((curr) => {
+      {feature.map((curr, index) => {
         const { value, suffix, info } = curr;
         return (
-          <li>
+          <li key={index}>
             <div className='pb-2'>
               <span className='text-lg font-medium sm:text-2xl'>{value}</span>
               <span className='text-sm font-medium ml-1'>{suffix}</span>
@@ -76,21 +77,24 @@ const Feature = ({ feature }) => {
   )
 }
 
-const StockInfo = ({inStock})=>{
+const StockInfo = ({inStock, url})=>{
+  const {cart, addToCart} = useGlobalContext();
+  console.log(cart);
   return (
     <div className='text-start mt-6'>
       {
         (inStock)
           ?
           <p className='flex gap-2 items-center'>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="flex-shrink-0 h-5 w-5 text-green-500"><path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path></svg>In Stock!
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" className="flex-shrink-0 h-5 w-5 text-green-500"><path fillRule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clipRule="evenodd"></path></svg>In Stock!
           </p>
           :
           <p className='flex gap-2 items-center'>
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" class="flex-shrink-0 h-5 w-5 text-gray-300"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clip-rule="evenodd"></path></svg>Out Of Stock!
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" className="flex-shrink-0 h-5 w-5 text-gray-300"><path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd"></path></svg>Out Of Stock!
           </p>
       }
-      <button className='bg-blue-600 hover:bg-blue-700 w-60 my-6 py-3 text-white font-medium rounded-lg disabled:bg-blue-300' disabled={!inStock}>Add To Cart</button>
+      <button className='bg-blue-600 hover:bg-blue-700 w-60 my-6 py-3 text-white font-medium rounded-lg disabled:bg-blue-300' disabled={!inStock}
+      onClick={()=>addToCart(url)}>Add To Cart</button>
     </div>
   )
 }

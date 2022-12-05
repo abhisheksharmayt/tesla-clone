@@ -1,6 +1,7 @@
 import React from 'react'
 import { useGlobalContext } from '../globalContext'
 import { productsInfo } from '../data/products-info';
+import { Link } from 'react-router-dom';
 const Menu = () => {
     const { closeMenu } = useGlobalContext();
     return (
@@ -20,9 +21,9 @@ const Menu = () => {
                         const { id, url, title } = product;
                         return (
                             <li key={id} className='px-4 py-2 my-2 rounded-md text-sm hover:bg-gray-100'>
-                                <a href={`/product/${url}`}>
+                                <Link to={`/product/${url}`}>
                                     {title}
-                                </a>
+                                </Link>
                             </li>
                         )
                     })
