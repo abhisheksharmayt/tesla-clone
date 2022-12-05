@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { productsInfo } from '../data/products-info';
+import {BsFacebook, BsInstagram, BsTwitter} from 'react-icons/bs'
 const Product = () => {
   const { name } = useParams();
   const [product, setProduct] = useState({});
@@ -15,13 +16,13 @@ const Product = () => {
   if (loading) {
     return <div className='pt-10 text-center'>loading..</div>
   }
-  const { id, title, rating, url, img, delivery, feature, about, price, inStock } = product;
+  const { id, title, rating, url, img, delivery, feature, about, price, inStock, highlights} = product;
   return (
-    <main className='pt-24 p-5 sm:pt-24 sm:p-16  md:p-24 lg:pt-24 lg:p-10 min-h-screen w-screen flex flex-col lg:flex-row'>
-      <div className='w-full h-fit overflow-hidden rounded-2xl'>
-        <img className='' src={img} alt={title} />
+    <main className='pt-24 p-5 sm:pt-24 sm:p-16  md:p-24 lg:pt-24 lg:p-10 lg:h-screen w-screen flex flex-col lg:flex-row'>
+      <div className='w-full h-fit lg:h-full overflow-hidden rounded-2xl'>
+        <img className='h-full w-full object-cover object-center' src={img} alt={title} />
       </div>
-      <div className='flex flex-col justify-center items-center bg-white min-h-36 p-10 sm:p-16 md:p-20 lg:p-10 rounded-b-2xl overflow-hidden min-h-full w-full lg:w-3/5 font-Monst text-center'>
+      <div className='flex flex-col items-center bg-white min-h-36 p-10 sm:p-16 md:p-20 lg:p-10 rounded-b-2xl w-full h-fit lg:overflow-auto lg:h-full lg:w-3/5 font-Monst text-center'>
         <div className='max-w-xl'>
           <h1 className='text-3xl sm:text-4xl md:text-5xl font-medium'>{title}</h1>
           <p className='pt-3 text-gray-600 font-sans'>{rating}</p>
@@ -30,7 +31,7 @@ const Product = () => {
           </p>
           <Feature feature={feature} />
           <p className='mt-10 text-start text-gray-700 font-normal'>{about}</p>
-          <p className='text-start mt-5 text-sm font-semibold'>
+          <p className='text-start mt-5 font-semibold'>
             Dual Motor All-Wheel Drive
           </p>
           <div className='flex justify-between items-center mt-6 py-3 px-5 border-blue-500 border-solid border-3 rounded-md font-semibold text-sm'>
@@ -38,6 +39,15 @@ const Product = () => {
             <p className=''>{price}</p>
           </div>
           <StockInfo inStock={inStock}/>
+          <Highlights highlights={highlights}/>
+          <div className='text-start mt-10'>
+            <p className='font-medium'>Share</p>
+            <div className="flex gap-10 text-2xl my-5 text-gray-500">
+              <a href="#" className='hover:text-gray-700'><BsFacebook></BsFacebook></a>
+              <a href="#" className='hover:text-gray-700'><BsInstagram></BsInstagram></a>
+              <a href="#" className='hover:text-gray-700'><BsTwitter></BsTwitter></a>
+            </div>
+          </div>
         </div>
       </div>
     </main>
@@ -84,4 +94,22 @@ const StockInfo = ({inStock})=>{
     </div>
   )
 }
+
+const Highlights = ({highlights})=>{
+  return(
+    <div className='text-start py-8 border-y-2 mt-5'>
+      <h5 className='font-semibold'>Highlights</h5>
+      <ul className='py-3 px-5 list-disc text-gray-600 text-sm'>
+        {
+          highlights.map((curr, index)=>{
+            return(
+              <li key={index} className='p-1'>{curr}</li>
+            )
+          })
+        }
+      </ul>
+    </div>
+  )
+}
+
 export default Product
