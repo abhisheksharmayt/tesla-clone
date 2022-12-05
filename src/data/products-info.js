@@ -7,6 +7,7 @@ export const productsInfo = [
         delivery: 'Feb 2023',
         inStock: true,
         price: '$40,390',
+        priceNum: 40390,
         highlights: ['Navigate on Autopilot','Auto Lane Change', 'Autopark', 'Summon', 'Smart Summon'],
         about: 'Tesla All-Wheel Drive has two independent motors for improved redundancy, each with only one moving part for minimal maintenance and maximum durability. Unlike traditional all-wheel drive systems, they digitally control torque to the front and rear wheels for far better handling and traction control.',
         feature: [
@@ -37,6 +38,7 @@ export const productsInfo = [
         delivery: 'Mar 2023',
         inStock: true,
         price: '$58,190',
+        priceNum: 58190,
         highlights: ['Navigate on Autopilot', 'Auto Lane Change', 'Autopark', 'Summon', 'Smart Summon'],
         about: 'With the most storage space and towing capacity of any electric SUV, and seating for up to seven adults, Model Y delivers maximum utility. Front doors open and close automatically, Falcon Wing doors allow for easier loading and a standard trailer hitch lets you bring your gear anywhere you go.',
         feature: [
@@ -67,6 +69,7 @@ export const productsInfo = [
         delivery: 'Feb 2023',
         inStock: true,
         price: '$112,590',
+        priceNum: 112590,
         highlights: ['Navigate on Autopilot', 'Auto Lane Change', 'Autopark', 'Summon', 'Smart Summon', 'Traffic Light and Stop Sign Control'],
         about: 'Tesla designed Model X from the ground-up as an electric vehicle — each component, including batteries, motors and exterior aerodynamics are optimized to benefit from one another and create one of the most efficient, yet unbelievably powerful vehicles ever built.',
         feature: [
@@ -97,6 +100,7 @@ export const productsInfo = [
         delivery: 'Feb 2023',
         inStock: false,
         price: '$96,590',
+        priceNum: 96590,
         highlights: ['Navigate on Autopilot', 'Auto Lane Change', 'Autopark', 'Summon', 'Smart Summon', 'Traffic Light and Stop Sign Control'],
         about: 'Tesla designed Model S from the ground-up as an electric vehicle — each component, including batteries, motors and exterior aerodynamics are optimized to benefit from one another and create one of the most efficient, yet unbelievably powerful vehicles ever built.',
         feature: [
