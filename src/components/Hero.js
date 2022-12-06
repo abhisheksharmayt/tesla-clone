@@ -11,7 +11,7 @@ const Hero = () => {
                         <div key={id} id={url} className="h-full w-full snap-start bg-cover bg-center flex flex-col items-center justify-between" style={{ backgroundImage: `url(${img})` }}>
                             {/* <img src={img} className="h-full w-full snap-start object-cover" alt="" /> */}
                             <div>
-                                <h1 className='m-3 mt-28 text-4xl text-center'>{title}</h1>
+                                <h1 className='m-3 mt-28 text-4xl text-center font-medium'>{title}</h1>
                                 <p className='text-sm'>{short_desc}</p>
                             </div>
                             <div className='mb-32 flex flex-col sm:flex-row'>

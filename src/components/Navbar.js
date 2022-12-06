@@ -17,7 +17,7 @@ const Navbar = () => {
     });
     // console.log(isMenuOpen);
     return (
-        <nav className={`fixed w-full py-3 flex justify-between ${(isNavbarBlur) ? ('') : ('bg-white/90 backdrop-blur-sm')}`}>
+        <nav className={`fixed w-full py-3 flex justify-between ${(isNavbarBlur) ? ('') : ('bg-white/90 backdrop-blur-sm')} font-medium`}>
             <div className="logo">
                 <Link to='/'>
                     <img src={tesla_logo} alt="tesla_logo" className='pl-6 h-8 w-40' />
