@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 const Cart = () => {
   const [cartItems, setCartItems] = useState([]);
   const [totalPrice, setTotalPrice] = useState(null);
-  const { cart, empty } = useGlobalContext();
+  const { cart, empty, removeFromCart } = useGlobalContext();
   console.log(empty, cart);
   useEffect(() => {
     let total = 0;
@@ -34,12 +34,12 @@ const Cart = () => {
           </div>
         ) : (
           <section className='flex flex-col lg:flex-row max-w-xl lg:max-w-full'>
-            <div className='w-full h-fit mt-5 lg:h-full border-t pb-5 border-gray-300 lg:w-2/3'>
+            <div className='w-full h-fit mt-5 lg:h-full border-t pb-5 mx-5 border-gray-300 lg:w-2/3'>
               {
                 cartItems.map((curr) => {
-                  const { id, title, img, about, price } = curr;
+                  const { id, title, img, about, price, url } = curr;
                   return (
-                    <div key={id} className='flex p-5 border-b w-full'>
+                    <div key={id} className='flex p-8 border-b w-full'>
                       <div className='rounded-lg overflow-hidden w-1/3'>
                         <img className='h-full w-full object-cover' src={img} alt={title} />
                       </div>
@@ -49,6 +49,11 @@ const Cart = () => {
                           <p className='font-medium'>{price}</p>
                         </div>
                         <p className='my-3 text-sm text-gray-500 h-24 overflow-hidden text-ellipsis'>{about}</p>
+                        <div className='flex justify-between mt-4 font-medium'>
+                          <p>Quantity: </p>
+                          <button className='underline hover:text-blue-600'
+                          onClick={()=>{removeFromCart(url)}}>remove</button>
+                        </div>
                       </div>
                     </div>
                   )
@@ -57,7 +62,7 @@ const Cart = () => {
             </div>
             <div className='flex flex-col items-start bg-white min-h-36 p-10 font-Monst text-center sm:p-16 md:p-20 lg:p-8 lg:px-5 w-full h-fit lg:overflow-auto lg:h-full lg:m-3 lg:mt-10 lg:w-1/3 lg:shadow-lg'>
               <h3 className='text-lg font-medium'>Order Summary</h3>
-              <ul className='w-full my-5 text-sm'>
+              <ul className='w-full my-5 text-xs'>
                 <li className='flex justify-between text-gray-600 font-medium pb-3'>
                   <p>Shipping</p>
                   <p>Free</p>
